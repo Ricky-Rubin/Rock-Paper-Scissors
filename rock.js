@@ -21,7 +21,7 @@ const findWinner = (player, computer) => {
 
 };
 
-console.log('Welcome to a game of Rock, Paper, Scissors!' + '\n');
+alert('Welcome to a game of Rock, Paper, Scissors!' + '\n');
 
 let userScore = 0;
 let computerScore = 0;
@@ -32,38 +32,38 @@ const playGame = () => {
         let playerOption = prompt('Choose one of the following: Rock, Paper, or Scissors: ').toLowerCase();
     
         while (playerOption !== 'rock' && playerOption !== 'paper' && playerOption !== 'scissors') {
-            console.log('Invalid entry. Check the options and try again!' + '\n');
+            alert('Invalid entry. Check the options and try again!' + '\n');
 
             playerOption = prompt('Choose one of the following: Rock, Paper, or Scissors: ')
         }
 
         const playerChoice = playerOption;
-        console.log(`Player chose: ${playerChoice}`);
+        alert(`Player chose: ${playerChoice}`);
 
         const computerChoice = computerOption(options);
-        console.log(`Computer chose: ${computerChoice}`);
+        alert(`Computer chose: ${computerChoice}`);
 
         const result = findWinner(playerChoice, computerChoice);
-        console.log(result);
+        alert(result);
 
         if (result.includes('You lose!')) {
             computerScore++;
-            console.log(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
+            alert(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
         } else if (result.includes('You win!')) {
             userScore++;
-            console.log(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
+            alert(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
         } else {
-            console.log(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
+            alert(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
         }
     }
 
-    console.log('Game Over!')
+    alert('Game Over!')
     if (computerScore > userScore) {
-        console.log('Oops! You lost the game to Computer.');
+        alert('Oops! You lost the game to Computer.');
     } else if (userScore > computerScore) {
-        console.log('Congratulations! You beat Computer!');
+        alert('Congratulations! You beat Computer!');
     } else {
-        console.log('It\'s a tie. Try again and see if you can beat Computer.')
+        alert('It\'s a tie. Try again and see if you can beat Computer.')
     }
 };
 
