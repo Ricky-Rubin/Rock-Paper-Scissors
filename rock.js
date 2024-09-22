@@ -6,14 +6,17 @@ const computerOption = (arr) => {
 };
 
 const findWinner = (player, computer) => {
+    const play = player.slice(0, 1).toUpperCase() + player.slice(1, player.length);
+    const comp = computer.slice(0, 1).toUpperCase() + computer.slice(1, computer.length);
+
     if (player === computer) {
         return `It's a tie!`
     } else if (player === 'rock' && computer === 'paper' ||
             player === 'paper' && computer === 'scissors' ||
             player === 'scissors' && computer === 'rock') {
-                return 'You lose!';
+                return `You lose! ${comp} beats ${play}`;
     } else {
-        return 'You win!';
+        return `You win! ${play} beats ${comp}`;
     }
 
 };
@@ -43,10 +46,10 @@ const playGame = () => {
         const result = findWinner(playerChoice, computerChoice);
         console.log(result);
 
-        if (result === 'You lose!') {
+        if (result.includes('You lose!')) {
             computerScore++;
             console.log(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
-        } else if (result === 'You win!') {
+        } else if (result.includes('You win!')) {
             userScore++;
             console.log(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
         } else {
