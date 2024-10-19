@@ -14,7 +14,12 @@ body {
 
 #btn1,
 #btn2 {
-    padding: 0px 12px;
+    padding: 1.5px 12px;
+}
+
+#btn3 {
+    padding-top: 1.5px;
+    padding-bottom: 1.5px;
 }
 
 .rule {
