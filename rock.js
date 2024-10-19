@@ -1,3 +1,8 @@
+const rock = document.querySelector('#btn1');
+const paper = document.querySelector('#btn2');
+const scissors = document.querySelector('#btn3');
+const outcome = document.querySelector('#result');
+
 const options = ['rock', 'paper', 'scissors'];
 
 const computerOption = (arr) => {
@@ -10,7 +15,7 @@ const findWinner = (player, computer) => {
     const comp = computer.slice(0, 1).toUpperCase() + computer.slice(1, computer.length);
 
     if (player === computer) {
-        return `It's a tie!`
+        return `It's a tie!`;
     } else if (player === 'rock' && computer === 'paper' ||
             player === 'paper' && computer === 'scissors' ||
             player === 'scissors' && computer === 'rock') {
@@ -21,50 +26,62 @@ const findWinner = (player, computer) => {
 
 };
 
-alert('Welcome to a game of Rock, Paper, Scissors!' + '\n');
-
 let userScore = 0;
 let computerScore = 0;
-let rounds = 5;
+let round = 0;
 
-const playGame = () => {
-    for (let roundNumber = 1; roundNumber <= rounds; roundNumber++) {
-        let playerOption = prompt('Choose one of the following: Rock, Paper, or Scissors: ').toLowerCase();
-    
-        while (playerOption !== 'rock' && playerOption !== 'paper' && playerOption !== 'scissors') {
-            alert('Invalid entry. Check the options and try again!' + '\n');
+const playGame = (playerChoice) => {
 
-            playerOption = prompt('Choose one of the following: Rock, Paper, or Scissors: ')
-        }
+    const computerChoice = computerOption(options);
 
-        const playerChoice = playerOption;
-        alert(`Player chose: ${playerChoice}`);
+    const result = findWinner(playerChoice, computerChoice);
 
-        const computerChoice = computerOption(options);
-        alert(`Computer chose: ${computerChoice}`);
-
-        const result = findWinner(playerChoice, computerChoice);
-        alert(result);
-
-        if (result.includes('You lose!')) {
-            computerScore++;
-            alert(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
-        } else if (result.includes('You win!')) {
-            userScore++;
-            alert(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
-        } else {
-            alert(`Score Board: Player - ${userScore}, Computer - ${computerScore}` + `\n`);
-        }
-    }
-
-    alert('Game Over!')
-    if (computerScore > userScore) {
-        alert('Oops! You lost the game to Computer.');
-    } else if (userScore > computerScore) {
-        alert('Congratulations! You beat Computer!');
+    if (result.includes('You lose!')) {
+        computerScore++;
+    } else if (result.includes('You win!')) {
+        userScore++;
     } else {
-        alert('It\'s a tie. Try again and see if you can beat Computer.')
+        userScore = userScore;
+        computerScore = computerScore;
     }
+    
+    
+    round++;
+    outcome.innerHTML = `<p>Round ${round}: Player chose ${playerChoice} --- Computer chose ${computerChoice}</p>
+                        <p>${result}</p>
+                        <p>Score Board: Player - ${userScore}, Computer - ${computerScore}</p>`
+    
+    if (computerScore === 5 && computerScore > userScore) {
+        outcome.innerHTML = `<p>Round ${round}: Player chose ${playerChoice} --- Computer chose ${computerChoice}</p>
+                            <p>Game Over!</p>
+                            <p>Oops! You got beat by Computer.</p>
+                            <p>Player score - ${userScore} : ${computerScore} - Computer score</p>`;
+
+        userScore = 0;
+        computerScore = 0;
+        round = 0;
+    }
+    
+    if (userScore === 5 && userScore > computerScore) {
+        outcome.innerHTML = `<p>Round ${round}: Player chose ${playerChoice} --- Computer chose ${computerChoice}</p>
+                            <p>Game Over!</p>
+                            <p>Congratulations! You beat Computer.</p>
+                            <p>Player score - ${userScore} : ${computerScore} - Computer score</p>`;
+
+        userScore = 0;
+        computerScore = 0;
+        round = 0;
+    } 
 };
 
-playGame();
+rock.addEventListener('click', () => {
+    playGame('rock');
+});
+
+paper.addEventListener('click', () => {
+    playGame('paper');
+});
+
+scissors.addEventListener('click', () => {
+    playGame('scissors');
+});
