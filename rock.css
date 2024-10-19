@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#btn1, 
+#btn2,
+#btn3 {
+    margin: 0px 15px;
+}
+
+#btn1,
+#btn2 {
+    padding: 0px 12px;
+}
+
+.rule {
+    margin: 8px 0px;
+}
+
+.buttons {
+    margin: 12px 0px;
+}
+
+#result {
+    text-align: center;
+}
