@@ -3,6 +3,15 @@ const paper = document.querySelector('#btn2');
 const scissors = document.querySelector('#btn3');
 const outcome = document.querySelector('#result');
 
+const playScore = document.querySelector('#play_score');
+const compScore = document.querySelector('#comp_score');
+
+let play_score = 0;
+let comp_score = 0;
+
+playScore.innerHTML = `${play_score}`;
+compScore.innerHTML = `${comp_score}`;
+
 const options = ['rock', 'paper', 'scissors'];
 
 const computerOption = (arr) => {
@@ -72,6 +81,16 @@ const playGame = (playerChoice) => {
         computerScore = 0;
         round = 0;
     } 
+
+    if (outcome.innerHTML.includes('Congratulations')) {
+        play_score ++;
+        playScore.innerHTML = `${play_score}`
+    };
+
+    if (outcome.innerHTML.includes('Oops!')) {
+        comp_score++;
+        compScore.innerHTML = `${comp_score}`
+    }
 };
 
 rock.addEventListener('click', () => {
